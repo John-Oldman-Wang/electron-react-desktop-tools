@@ -13676,35 +13676,26 @@ exports.default = View;
 
 /***/ }),
 /* 126 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(global) {
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* WEBPACK VAR INJECTION */(function(global) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__component_titleBar_js__ = __webpack_require__(226);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__component_hello_js__ = __webpack_require__(306);
 
-var _react = __webpack_require__(2);
 
-var _react2 = _interopRequireDefault(_react);
+const { ipcRenderer } = global.require('electron');
 
-var _reactDom = __webpack_require__(53);
 
-var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _titleBar = __webpack_require__(226);
+__WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__component_hello_js__["a" /* default */], { name: 'World' }), document.getElementById('main'));
 
-var _titleBar2 = _interopRequireDefault(_titleBar);
-
-var _test = __webpack_require__(306);
-
-var _test2 = _interopRequireDefault(_test);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var _global$require = global.require('electron'),
-    ipcRenderer = _global$require.ipcRenderer;
-
-console.log(_titleBar2.default);
-_reactDom2.default.render(_react2.default.createElement('titleBar', null), document.getElementById('titleBar'));
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(50)))
+__WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__component_titleBar_js__["a" /* default */], { name: 'My Windows Application' }), document.getElementById('header'));
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(50)))
 
 /***/ }),
 /* 127 */
@@ -25804,94 +25795,73 @@ module.exports = ReactDOMInvalidARIAHook;
 
 /***/ }),
 /* 226 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(global) {
+/* WEBPACK VAR INJECTION */(function(global) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_dom__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react_dom__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_desktop_windows__ = __webpack_require__(227);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_desktop_windows___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react_desktop_windows__);
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _reactDom = __webpack_require__(53);
+const { ipcRenderer } = global.require('electron');
+class _class extends __WEBPACK_IMPORTED_MODULE_1_react___default.a.Component {
 
-var _reactDom2 = _interopRequireDefault(_reactDom);
+  constructor(props) {
+    super(props);
 
-var _react = __webpack_require__(2);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _windows = __webpack_require__(227);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var _global$require = global.require('electron'),
-    ipcRenderer = _global$require.ipcRenderer;
-
-var _class = function (_Component) {
-  _inherits(_class, _Component);
-
-  function _class(props) {
-    _classCallCheck(this, _class);
-
-    var _this = _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).call(this, props));
-
-    _this.close = function () {
+    this.close = function () {
       ipcRenderer.send('closeWindow');
       console.log('close');
     };
 
-    _this.minimize = function () {
+    this.minimize = function (e) {
       ipcRenderer.send('minimize');
+      var evt = new MouseEvent("mouseout", {
+        bubbles: true,
+        cancelable: true,
+        view: global
+      });
+      e.currentTarget.dispatchEvent(evt);
       console.log('minimize');
     };
 
-    _this.toggleMaximize = function () {
+    this.toggleMaximize = function () {
       ipcRenderer.send('maximize');
       this.setState({ isMaximized: !this.state.isMaximized });
-    }.bind(_this);
+    }.bind(this);
 
-    _this.state = { isMaximized: false };
+    this.state = { isMaximized: false };
     ipcRenderer.on('whetherMaximize', function (e, mes) {
       this.setState({ isMaximized: mes });
-    }.bind(_this));
-    return _this;
+    }.bind(this));
   }
 
-  _createClass(_class, [{
-    key: 'render',
-    value: function render() {
-      return _react2.default.createElement(_windows.TitleBar, {
-        title: 'My Windows Application',
-        controls: true,
-        isMaximized: this.state.isMaximized,
-        theme: this.props.theme,
-        background: this.props.color,
-        onCloseClick: this.close,
-        onMinimizeClick: this.minimize,
-        onMaximizeClick: this.toggleMaximize,
-        onRestoreDownClick: this.toggleMaximize
-      });
-    }
-  }]);
 
-  return _class;
-}(_react.Component);
+  render() {
+    return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_desktop_windows__["TitleBar"], {
+      title: this.props.name,
+      controls: true,
+      isMaximized: this.state.isMaximized,
+      theme: this.props.theme,
+      background: this.props.color,
+      onCloseClick: this.close,
+      onMinimizeClick: this.minimize,
+      onMaximizeClick: this.toggleMaximize,
+      onRestoreDownClick: this.toggleMaximize
+    });
+  }
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = _class;
 
 _class.defaultProps = {
   color: '#090',
   theme: 'light'
 };
-exports.default = _class;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(50)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(50)))
 
 /***/ }),
 /* 227 */
@@ -32569,18 +32539,22 @@ exports.default = {
 
 /***/ }),
 /* 306 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
+/* harmony default export */ __webpack_exports__["a"] = (class extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
+  render() {
+    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+      'div',
+      null,
+      'Hello ',
+      this.props.name
+    );
+  }
 });
-var f = function f() {
-	console.log('test');
-};
-exports.default = f;
 
 /***/ })
 /******/ ]);

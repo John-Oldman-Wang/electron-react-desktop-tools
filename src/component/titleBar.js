@@ -2,7 +2,7 @@ import ReactDOM from 'react-dom';
 import React, { Component } from 'react';
 import { TitleBar } from 'react-desktop/windows';
 const { ipcRenderer } =global.require('electron');
-export default class extends Component {
+export default class extends React.Component {
   static defaultProps = {
     color: '#090',
     theme: 'light'
@@ -19,8 +19,14 @@ export default class extends Component {
     ipcRenderer.send('closeWindow')
     console.log('close');
   }
-  minimize = function(){
+  minimize = function(e){
     ipcRenderer.send('minimize')
+    var evt = new MouseEvent("mouseout", {
+      bubbles: true,
+      cancelable: true,
+      view: global,
+    });
+    e.currentTarget.dispatchEvent(evt)
     console.log('minimize');
   }
   toggleMaximize =function(){
@@ -31,7 +37,7 @@ export default class extends Component {
   render() {
     return (
       <TitleBar
-        title="My Windows Application"
+        title={this.props.name}
         controls
         isMaximized={this.state.isMaximized}
         theme={this.props.theme}

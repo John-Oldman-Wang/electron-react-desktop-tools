@@ -1,6 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 const { ipcRenderer } =global.require('electron');
-import titleBar from './component/titleBar.js';
-console.log(titleBar)
-ReactDOM.render(<titleBar />,document.getElementById('titleBar'))
+import TitleBar from './component/titleBar.js';
+import HelloMessage from './component/hello.js';
+
+
+ReactDOM.render(
+  <HelloMessage name="World" />,
+  document.getElementById('main')
+);
+
+ReactDOM.render(
+	<TitleBar name="My Windows Application" />,
+	document.getElementById('header')
+)
