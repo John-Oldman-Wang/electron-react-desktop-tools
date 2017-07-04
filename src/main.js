@@ -1,16 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 const { ipcRenderer } =global.require('electron');
+import React from 'react';
+const ReactDOM =global.require('react-dom');
 import TitleBar from './component/titleBar.js';
-import HelloMessage from './component/hello.js';
-
-
-ReactDOM.render(
-  <HelloMessage name="World" />,
-  document.getElementById('main')
-);
+import Nav from './component/NavPane.js';
+import Window from './component/window.js';
 
 ReactDOM.render(
 	<TitleBar name="My Windows Application" />,
 	document.getElementById('header')
+)
+
+ReactDOM.render(
+	<Nav />,
+	document.getElementById('main')
 )

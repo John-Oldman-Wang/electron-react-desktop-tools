@@ -1,13 +1,12 @@
-import ReactDOM from 'react-dom';
-import React, { Component } from 'react';
+import React,{Component} from 'react';
 import { TitleBar } from 'react-desktop/windows';
-const { ipcRenderer } =global.require('electron');
-export default class extends React.Component {
+import { ipcRenderer } from 'electron';
+export default class extends Component {
   static defaultProps = {
-    color: '#090',
+    color: '#cc7f29',
     theme: 'light'
   };
-
+  
   constructor(props) {
     super(props);
     this.state = { isMaximized: false };
@@ -38,7 +37,7 @@ export default class extends React.Component {
     return (
       <TitleBar
         title={this.props.name}
-        controls
+        controls={true}
         isMaximized={this.state.isMaximized}
         theme={this.props.theme}
         background={this.props.color}
