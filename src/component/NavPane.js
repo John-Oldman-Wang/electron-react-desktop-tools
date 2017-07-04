@@ -12,13 +12,18 @@ export default class extends Component {
     this.state = {
       selected: '数据校验',
       type:'',
-      dirpath:'c://'
+      dirpath:'c://',
+      disabled:false
     }
   }
   btnClick(e){
-    e.target.disabled=true;
+    this.setState({disabled:true})
     e.target.style.backgroundColor="#099";
-    console.log(this.state)
+    setTimeout(()=>{
+      this.setState({disabled:false})
+      global.ccc=this
+      console.log(this)
+    },5000)
   }
   seletChange(e){
     console.log(e.target.value)
@@ -44,7 +49,7 @@ export default class extends Component {
         padding="10px 20px"
         push
       >
-        <Button style={{width:'300px',display:'inline'}} push={false} color={this.props.color} onClick={this.btnClick.bind(this)}>选择校验文件夹</Button>
+        <Button style={{width:'300px',display:'inline'}} push={false} color={this.props.color} onClick={this.btnClick.bind(this)} disabled={this.state.disabled}>选择校验文件夹{this.state.disabled.toString()}</Button>
         <Label style={{width:'300px',display:'inline'}}>{this.state.dirpath}</Label>
         <select style={{height:'30px'}} onChange={this.seletChange.bind(this)}>
           <option value='type1'>报名</option>

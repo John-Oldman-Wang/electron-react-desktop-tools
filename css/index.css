@@ -1,0 +1,24 @@
+html,body{
+	width:100%;
+	overflow: hidden;
+	padding: 0px;
+	margin: 0px;
+	height:100%;
+	position: relative;
+}
+*{
+	box-sizing: border-box;
+	font-size:15px;
+	line-height: 40px;
+}
+#header{
+	height: 31px;
+	line-height: 31px;
+	font-size: 24px;
+}
+#main{
+	width:100%;
+	position: absolute;
+	top:31px;
+	bottom: 0px;
+}
