@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
-import { Window, TitleBar, Text } from 'react-desktop/windows';
+const React =require('react');
+const { Component } =require('react')
+const { Window, TitleBar, Text } =require('react-desktop/windows');
 
-export default class extends Component {
+module.exports = class extends Component {
   static defaultProps = {
     color: '#cc7f29',
     theme: 'light'

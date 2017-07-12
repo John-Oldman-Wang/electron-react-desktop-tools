@@ -1,7 +1,8 @@
-import React,{Component} from 'react';
-import { TitleBar } from 'react-desktop/windows';
-import { ipcRenderer } from 'electron';
-export default class extends Component {
+const React = require('react');
+const {Component} =require('react')
+const { TitleBar } =require('react-desktop/windows');
+const { ipcRenderer } =require('electron');
+module.exports=class extends Component {
   static defaultProps = {
     color: '#cc7f29',
     theme: 'light'

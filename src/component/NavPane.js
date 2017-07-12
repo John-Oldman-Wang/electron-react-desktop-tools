@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { NavPane, NavPaneItem, Text , Button , Label , ProgressCircle } from 'react-desktop/windows';
-
-export default class extends Component {
+const React =require('react');
+const {Component} =require('react')
+const { NavPane, NavPaneItem, Text , Button , Label , ProgressCircle } =require('react-desktop/windows');
+module.exports= class extends Component {
   static defaultProps = {
     color: '#cc7f29',
     theme: 'light'
