@@ -10,72 +10,73 @@ module.exports= class extends Component {
   constructor() {
     super();
     this.state = {
-      selected: 'item 1',
+      selected: '数据校验',
       type:'',
       dirpath:'c://',
       disabled:false
     }
   }
+  btnClick(e){
+    this.setState({disabled:true})
+    e.target.style.backgroundColor="#099";
+    setTimeout(()=>{
+      this.setState({disabled:false})
+      global.ccc=this
+      console.log(this)
+    },5000)
+  }
+  seletChange(e){
+    console.log(e.target.value)
+    this.setState({type:e.target.value})
+  }
   render() {
     return (
       <NavPane style={{height:'100%'}} openLength={200} push color={this.props.color} theme={this.props.theme}>
-        {[this.renderItem('item 1', 'Content 1'),this.renderItem('item 2', 'Content 2'),this.renderItem('item 3', 'Content 3')]}
+        {this.renderItem('数据校验', 'Content 1')}
       </NavPane>
     );
   }
 
   renderItem(title, content) {
-    if(content=='Content 1'){
-      return (
-        <NavPaneItem
-          key={title}
-          title={title}
-          icon={this.renderIcon(title)}
-          theme="light"
-          background="#ffffff"
-          selected={this.state.selected === title}
-          onSelect={() => this.setState({ selected: title })}
-          padding="10px 20px"
-          push
-        >
-          <Button color={this.props.color} >Button</Button>
-          <select style={{height:'30px'}} >
-            <option value='type1'>option1</option>
-            <option value='type2'>option2</option>
-            <option value='type3'>option3</option>
-          </select>
-          <Label>{title}</Label>
-        </NavPaneItem>
-      );
-    }else{
-      return (
-        <NavPaneItem
-          key={title}
-          title={title}
-          icon={this.renderIcon(title)}
-          theme="light"
-          background="#ffffff"
-          padding="10px 20px"
-          selected={this.state.selected === title}
-          onSelect={() => this.setState({ selected: title })}
-          push
-        >
-        <Button color={this.props.color} >Button</Button>
-        </NavPaneItem>
-      );
-    }
+    return (
+      <NavPaneItem
+        title={title}
+        icon={this.renderIcon(title)}
+        theme="light"
+        background="#ffffff"
+        selected={this.state.selected === title}
+        onSelect={() => this.setState({ selected: title })}
+        padding="10px 20px"
+        push
+      >
+        <Button style={{width:'300px',display:'inline'}} push={false} color={this.props.color} onClick={this.btnClick.bind(this)} disabled={this.state.disabled}>选择校验文件夹{this.state.disabled.toString()}</Button>
+        <Label style={{width:'300px',display:'inline'}}>{this.state.dirpath}</Label>
+        <select style={{height:'30px'}} onChange={this.seletChange.bind(this)}>
+          <option value='type1'>报名</option>
+          <option value='type2'>考试</option>
+          <option value='type3'>毕业</option>
+        </select>
+        <Button color={this.props.color}>
+          开始校验
+          
+        </Button>
+        <Text style={{position:'absolute',overflow:'visible',top:'187px',bottom:'0px',width:'100%'}}>
+            <ProgressCircle style={{position:'absolute',top:'50%',left:'50%',marginLeft:'-150px',marginTop:'0px'}} color={this.props.color} size={300}></ProgressCircle>
+        </Text>
+      </NavPaneItem>
+    );
   }
 
   renderIcon(name) {
     const fill = this.props.theme === 'dark' ? '#ffffff' : '#000000';
     switch(name) {
-    case 'item 1':
+    case '数据校验':
       return (
         <svg x="0px" y="0px" width="16px" height="14.9px" viewBox="0 0 16 14.9">
           <polygon fill={fill} points="16,5.6 10.6,4.7 8,0 5.4,4.7 0,5.7 3.8,9.6 3.1,14.9 8,12.6 13,14.8 12.3,9.5 "/>
         </svg>
       );
-    case 'item 2':
+    case '考  试':
       return (
         <svg x="0px" y="0px" width="16px" height="13.5px" viewBox="0 0 16 13.5">
           <path
@@ -87,7 +88,7 @@ module.exports= class extends Component {
           />
         </svg>
       );
-    case 'item 3':
+    case '毕  业':
       return (
         <svg x="0px" y="0px" width="16px" height="15.6px" viewBox="0 0 16 15.6">
           <path

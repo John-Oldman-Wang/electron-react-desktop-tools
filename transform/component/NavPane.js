@@ -8,98 +8,99 @@ module.exports = (_temp = _class = class extends Component {
   constructor() {
     super();
     this.state = {
-      selected: 'item 1',
+      selected: '数据校验',
       type: '',
       dirpath: 'c://',
       disabled: false
     };
   }
+  btnClick(e) {
+    this.setState({ disabled: true });
+    e.target.style.backgroundColor = "#099";
+    setTimeout(() => {
+      this.setState({ disabled: false });
+      global.ccc = this;
+      console.log(this);
+    }, 5000);
+  }
+  seletChange(e) {
+    console.log(e.target.value);
+    this.setState({ type: e.target.value });
+  }
   render() {
     return React.createElement(
       NavPane,
       { style: { height: '100%' }, openLength: 200, push: true, color: this.props.color, theme: this.props.theme },
-      [this.renderItem('item 1', 'Content 1'), this.renderItem('item 2', 'Content 2'), this.renderItem('item 3', 'Content 3')]
+      this.renderItem('数据校验', 'Content 1')
     );
   }
 
   renderItem(title, content) {
-    if (content == 'Content 1') {
-      return React.createElement(
-        NavPaneItem,
-        {
-          key: title,
-          title: title,
-          icon: this.renderIcon(title),
-          theme: 'light',
-          background: '#ffffff',
-          selected: this.state.selected === title,
-          onSelect: () => this.setState({ selected: title }),
-          padding: '10px 20px',
-          push: true
-        },
+    return React.createElement(
+      NavPaneItem,
+      {
+        title: title,
+        icon: this.renderIcon(title),
+        theme: 'light',
+        background: '#ffffff',
+        selected: this.state.selected === title,
+        onSelect: () => this.setState({ selected: title }),
+        padding: '10px 20px',
+        push: true
+      },
+      React.createElement(
+        Button,
+        { style: { width: '300px', display: 'inline' }, push: false, color: this.props.color, onClick: this.btnClick.bind(this), disabled: this.state.disabled },
+        '\u9009\u62E9\u6821\u9A8C\u6587\u4EF6\u5939',
+        this.state.disabled.toString()
+      ),
+      React.createElement(
+        Label,
+        { style: { width: '300px', display: 'inline' } },
+        this.state.dirpath
+      ),
+      React.createElement(
+        'select',
+        { style: { height: '30px' }, onChange: this.seletChange.bind(this) },
         React.createElement(
-          Button,
-          { color: this.props.color },
-          'Button'
+          'option',
+          { value: 'type1' },
+          '\u62A5\u540D'
         ),
         React.createElement(
-          'select',
-          { style: { height: '30px' } },
-          React.createElement(
-            'option',
-            { value: 'type1' },
-            'option1'
-          ),
-          React.createElement(
-            'option',
-            { value: 'type2' },
-            'option2'
-          ),
-          React.createElement(
-            'option',
-            { value: 'type3' },
-            'option3'
-          )
+          'option',
+          { value: 'type2' },
+          '\u8003\u8BD5'
         ),
         React.createElement(
-          Label,
-          null,
-          title
+          'option',
+          { value: 'type3' },
+          '\u6BD5\u4E1A'
         )
-      );
-    } else {
-      return React.createElement(
-        NavPaneItem,
-        {
-          key: title,
-          title: title,
-          icon: this.renderIcon(title),
-          theme: 'light',
-          background: '#ffffff',
-          padding: '10px 20px',
-          selected: this.state.selected === title,
-          onSelect: () => this.setState({ selected: title }),
-          push: true
-        },
-        React.createElement(
-          Button,
-          { color: this.props.color },
-          'Button'
-        )
-      );
-    }
+      ),
+      React.createElement(
+        Button,
+        { color: this.props.color },
+        '\u5F00\u59CB\u6821\u9A8C'
+      ),
+      React.createElement(
+        Text,
+        { style: { position: 'absolute', overflow: 'visible', top: '187px', bottom: '0px', width: '100%' } },
+        React.createElement(ProgressCircle, { style: { position: 'absolute', top: '50%', left: '50%', marginLeft: '-150px', marginTop: '0px' }, color: this.props.color, size: 300 })
+      )
+    );
   }
 
   renderIcon(name) {
     const fill = this.props.theme === 'dark' ? '#ffffff' : '#000000';
     switch (name) {
-      case 'item 1':
+      case '数据校验':
         return React.createElement(
           'svg',
           { x: '0px', y: '0px', width: '16px', height: '14.9px', viewBox: '0 0 16 14.9' },
           React.createElement('polygon', { fill: fill, points: '16,5.6 10.6,4.7 8,0 5.4,4.7 0,5.7 3.8,9.6 3.1,14.9 8,12.6 13,14.8 12.3,9.5 ' })
         );
-      case 'item 2':
+      case '考  试':
         return React.createElement(
           'svg',
           { x: '0px', y: '0px', width: '16px', height: '13.5px', viewBox: '0 0 16 13.5' },
@@ -108,7 +109,7 @@ module.exports = (_temp = _class = class extends Component {
             d: 'M16,4.2C16,1.9,14.1,0,11.7,0c-1.4,0-2.6,0.6-3.4,1.6c0,0,0,0,0,0C8.3,1.7,8.1,1.8,8,1.8\r c-0.2,0-0.3-0.1-0.4-0.2c0,0,0,0,0,0C6.8,0.6,5.6,0,4.3,0C1.9,0,0,1.9,0,4.2c0,0,0,0.1,0,0.1l0,0c0,0,0,0.1,0,0.3\r C0,4.8,0.1,5,0.1,5.2c0.3,1.4,1.4,4.1,5.1,6.5c2.1,1.4,2.6,1.8,2.8,1.8c0,0,0,0,0,0c0,0,0,0,0,0c0.1,0,0.7-0.4,2.8-1.8\r c3.5-2.3,4.6-4.8,5-6.3C15.9,5.1,16,4.8,16,4.5C16,4.3,16,4.2,16,4.2L16,4.2C16,4.2,16,4.2,16,4.2z'
           })
         );
-      case 'item 3':
+      case '毕  业':
         return React.createElement(
           'svg',
           { x: '0px', y: '0px', width: '16px', height: '15.6px', viewBox: '0 0 16 15.6' },
